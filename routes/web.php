@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\ProdukController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -20,8 +23,12 @@ use App\Http\Controllers\UserController;
 Route::get('/', [UserController::class, 'index']);
 Route::get('/login', [UserController::class, 'login']);
 Route::post('/login', [AuthController::class, 'authLogin']);
+Route::post('/logout', [AuthController::class, 'authLogout']);
 
 Route::prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index']);
     Route::resource('/produk', ProdukController::class);
+    Route::resource('/kategori', KategoriController::class);
+    Route::resource('/customer', CustomerController::class);
+    Route::resource('/admin', AdminUserController::class);
 });

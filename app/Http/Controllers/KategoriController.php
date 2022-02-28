@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kategori;
-use App\Models\Produk;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
 
-class ProdukController extends Controller
+class KategoriController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,14 +14,11 @@ class ProdukController extends Controller
      */
     public function index()
     {
-        return view('admin.produk', [
-            'activeLink' => 'produk',
-            'page' => 'TMA | Data Produk,',
-            'produkRows' => Produk::select(['produk.*', 'kategori.nama_kategori'])
-                ->orderBy('nama_produk', 'asc')
-                ->join('kategori', 'kategori.kategori_id', '=', 'produk.kategori_id')
+        return view('admin.kategori', [
+            'activeLink' => 'kategori',
+            'page' => 'TMA | Data Kategori,',
+            'kategoriRows' => Kategori::orderBy('nama_kategori', 'asc')
                 ->get(),
-            'kategoriRows' => Kategori::get(),
         ]);
     }
 
@@ -46,21 +41,19 @@ class ProdukController extends Controller
     public function store(Request $request)
     {
         $temp = $request->file('gambar')->getPathName();
-        $file = "PRODUK - " . date('Ymdhsi') . "." . $request->file('gambar')->extension();
+        $file = "KATEGORI - " . date('Ymdhsi') . "." . $request->file('gambar')->extension();
 
-        $folder = "upload/produk/" . $file;
+        $folder = "upload/kategori/" . $file;
         move_uploaded_file($temp, $folder);
 
         $data = [
-            'kategori_id' => $request->input('kategori'),
-            'nama_produk' => $request->input('nama_produk'),
-            'harga' => $request->input('harga'),
+            'nama_kategori' => $request->input('nama_kategori'),
             'gambar' => $folder,
         ];
 
-        Produk::create($data);
+        Kategori::create($data);
 
-        return redirect('/admin/produk')->with('success', 'Data berhasil ditambahkan!');
+        return redirect('/admin/kategori')->with('success', 'Data berhasil ditambahkan!');
     }
 
     /**
@@ -94,27 +87,27 @@ class ProdukController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $produk = Produk::find($id)->first();
-        $file = $produk->gambar;
+        $kategori = Kategori::where('kategori_id', $id)->first();
+        $folder = $kategori->gambar;
 
+        // dd($kategori);
         if ($request->input('checkImg')) {
             $temp = $request->file('gambar')->getPathName();
-            $file = "PRODUK - " . date('Ymdhsi') . "." . $request->file('gambar')->extension();
+            $file = "KATEGORI - " . date('Ymdhsi') . "." . $request->file('gambar')->extension();
 
             $folder = "upload/produk/" . $file;
             move_uploaded_file($temp, $folder);
         }
 
         $data = [
-            'kategori_id' => $request->input('kategori'),
-            'nama_produk' => $request->input('nama_produk'),
-            'harga' => $request->input('harga'),
-            'gambar' => $file,
+            'nama_kategori' => $request->input('nama_kategori'),
+            'gambar' => $folder,
         ];
 
-        Produk::find($id)->update($data);
 
-        return redirect('/admin/produk')->with('success', 'Data berhasil diubah!');
+        Kategori::find($id)->update($data);
+
+        return redirect('/admin/kategori')->with('success', 'Data berhasil diubah!');
     }
 
     /**
@@ -125,9 +118,9 @@ class ProdukController extends Controller
      */
     public function destroy($id)
     {
-        $produk = Produk::find($id)->first();
-        Produk::find($id)->delete();
-        unlink('upload/produk/' . $produk->gambar);
-        return redirect('/admin/produk')->with('success', 'Data berhasil dihapus!');
+        $kategori = Kategori::where('kategori_id', $id)->first();
+        Kategori::find($id)->delete();
+        unlink($kategori->gambar);
+        return redirect('/admin/kategori')->with('success', 'Data berhasil dihapus!');
     }
 }
