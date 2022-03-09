@@ -21,6 +21,14 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', [UserController::class, 'index']);
+Route::get('/kategori', [UserController::class, 'index']);
+Route::get('/signup', [UserController::class, 'signUp']);
+Route::post('/signup', [UserController::class, 'signUpStore']);
+Route::get('/signup/emailverification', [UserController::class, 'signUpVerification']);
+Route::get('/kategori/{page}', [UserController::class, 'kategori']);
+Route::get('/produk/{id}', [UserController::class, 'produkDetail']);
+
+//AUTH
 Route::get('/login', [UserController::class, 'login']);
 Route::post('/login', [AuthController::class, 'authLogin']);
 Route::post('/logout', [AuthController::class, 'authLogout']);

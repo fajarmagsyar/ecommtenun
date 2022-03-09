@@ -55,6 +55,8 @@ class ProdukController extends Controller
             'kategori_id' => $request->input('kategori'),
             'nama_produk' => $request->input('nama_produk'),
             'harga' => $request->input('harga'),
+            'deskripsi' => $request->input('deskripsi'),
+            'stok' => $request->input('stok'),
             'gambar' => $folder,
         ];
 
@@ -109,6 +111,8 @@ class ProdukController extends Controller
             'kategori_id' => $request->input('kategori'),
             'nama_produk' => $request->input('nama_produk'),
             'harga' => $request->input('harga'),
+            'deskripsi' => $request->input('deskripsi'),
+            'stok' => $request->input('stok'),
             'gambar' => $file,
         ];
 

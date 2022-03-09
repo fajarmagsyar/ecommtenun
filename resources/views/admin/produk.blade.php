@@ -50,6 +50,15 @@
                                                 placeholder="(ex: 200000)" required>
                                         </div>
                                         <div class="mb-3">
+                                            <label for="exampleInputEmail1" class="form-label">Deskripsi</label>
+                                            <textarea name="deskripsi" class="form-control" required></textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="harga" class="form-label">Stok</label>
+                                            <input type="number" min="0" max="99999" class="form-control" name="stok"
+                                                id="harga" required>
+                                        </div>
+                                        <div class="mb-3">
                                             <label for="harga" class="form-label">Kategori</label>
                                             <select class="form-select" name="kategori" id="" required>
                                                 <option value="" selected disabled>Pilih Kategori</option>
@@ -86,6 +95,8 @@
                                     <th class="text-center">Nama Produk</th>
                                     <th class="text-center">Kategori</th>
                                     <th class="text-center">Harga</th>
+                                    <th class="text-center">Deskripsi</th>
+                                    <th class="text-center">Stok</th>
                                     <th class="text-center">Gambar</th>
                                     <th class="text-center">Aksi</th>
                                 </tr>
@@ -96,6 +107,8 @@
                                     <th class="text-center">Nama Produk</th>
                                     <th class="text-center">Kategori</th>
                                     <th class="text-center">Harga</th>
+                                    <th class="text-center">Deskripsi</th>
+                                    <th class="text-center">Stok</th>
                                     <th class="text-center">Gambar</th>
                                     <th class="text-center">Aksi</th>
                                 </tr>
@@ -107,9 +120,11 @@
                                         <td>{{ $r->nama_produk }}</td>
                                         <td class="text-center">{{ $r->nama_kategori }}</td>
                                         <td class="text-end">Rp.{{ number_format($r->harga) }}</td>
+                                        <td class="text-center">{{ $r->deskripsi }}</td>
+                                        <td class="text-center">{{ $r->stok }}</td>
                                         <td class="text-center">
-                                            <a href="/upload/produk/{{ $r->gambar }}" target="_blank">
-                                                <img height="50px" src="/upload/produk/{{ $r->gambar }}" alt="">
+                                            <a href="/{{ $r->gambar }}" target="_blank">
+                                                <img height="50px" src="/{{ $r->gambar }}" alt="">
                                             </a>
                                         </td>
                                         <td class="text-center align-middle">
@@ -156,6 +171,18 @@
                                                             <input value="{{ $r->harga }}" type="number" min="0"
                                                                 class="form-control" name="harga" id="harga"
                                                                 placeholder="(ex: 200000)" required>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="exampleInputEmail1"
+                                                                class="form-label">Deskripsi</label>
+                                                            <textarea name="deskripsi" class="form-control"
+                                                                required>{{ $r->nama_produk }}</textarea>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="harga" class="form-label">Stok</label>
+                                                            <input value="{{ $r->stok }}" type="number" min="0"
+                                                                max="99999" class="form-control" name="stok" id="harga"
+                                                                required>
                                                         </div>
                                                         <div class="mb-5">
                                                             <label for="harga" class="form-label">Kategori</label>

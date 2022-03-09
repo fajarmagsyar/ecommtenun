@@ -18,6 +18,8 @@ return new class extends Migration
             $table->integer('kategori_id');
             $table->string('nama_produk');
             $table->string('harga');
+            $table->string('deskripsi');
+            $table->string('stok');
             $table->string('gambar')->nullable();
             $table->timestamps();
         });
