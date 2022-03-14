@@ -1,6 +1,15 @@
 @extends('user.layouts.main')
 @section('content')
-    <!-- ======= Doctors Section ======= -->
+    @if (session()->has('success'))
+        <script>
+            swal("Berhasil", "{{ session('success') }}", "success")
+        </script>
+    @endif
+    @if (session()->has('error'))
+        <script>
+            swal("Gagal", "{{ session('error') }}", "error")
+        </script>
+    @endif
     <section id="doctors" class="doctors mt-5">
         <div class="container">
             <div class="row mb-4">
@@ -24,8 +33,8 @@
                                     stok</strong> {{ $produkRow->stok }}
                             </p>
                             @if ($logged == true)
-                                <a href="/produk/addToCart" class="btn btn-primary float-end btn-sm px-4"
-                                    style="border-radius: 30px">Masukkan
+                                <a href="/produk/addToCart/{{ $produkRow->produk_id }}"
+                                    class="btn btn-primary float-end btn-sm px-4" style="border-radius: 30px">Masukkan
                                     Keranjang <i class="ri-shopping-cart-fill"></i></a>
                                 <a href="/produk/checkout" class="btn btn-info btn-sm px-4"
                                     style="color:white;border-radius: 30px">Checkout <i
@@ -44,6 +53,5 @@
             </div>
         </div>
     </section><!-- End Doctors Section -->
-
     </main><!-- End #main -->
 @endsection

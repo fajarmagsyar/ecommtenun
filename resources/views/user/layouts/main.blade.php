@@ -37,7 +37,7 @@
         <div class="container d-flex align-items-center">
 
             <span class="logo me-auto"><a href="/"><img src="/user/assets/img/logo.png" height="100%" alt="">
-                </a></span>
+                </a><span style="font-size: 24px">Tenun Gunung Mako</span></span>
 
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
@@ -51,14 +51,47 @@
                             @endforeach
                         </ul>
                     </li>
-                    <li><a class="nav-link" href="/keranjang">Keranjang</a></li>
-                    <li><a class="nav-link" href="/catatan">Catatan Pembelian</a></li>
-                    <li><a class="nav-link" href="/login">Masuk</a></li>
+                    @if ($logged == true)
+
+                        <li><a class="nav-link" href="/keranjang">
+                                Keranjang &nbsp;
+                                @if ($countKeranjang !== null)
+                                    <span class="badge bg-primary">{{ $countKeranjang }} <i
+                                            class="fas fa-shopping-cart"></i></span>
+                                @endif
+                            </a>
+                        </li>
+                        <li><a class="nav-link" href="/catatan">Catatan Pembelian</a></li>
+                    @else
+                        <li><a class="nav-link" href="/login">
+                                Keranjang
+                            </a>
+                        </li>
+                        <li><a class="nav-link" href="/login">Catatan Pembelian</a></li>
+                    @endif
+                    @if ($logged !== true)
+                        <li><a class="nav-link" href="/login">Masuk</a></li>
+                    @else
+                        <li class="dropdown"><a href="#"><span><i class="fas fa-user"></i>
+                                    {{ auth()->user()->username }}</span>
+                                <i class="bi bi-chevron-down"></i></a>
+                            <ul>
+                                <li><a href="#">Profil</a></li>
+
+                                <form action="/logout" method="post">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item text-danger"><i
+                                            class="fas fa-logout"></i> Logout</button>
+                                </form>
+                            </ul>
+                        </li>
+                    @endif
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav>
-
-            <a href="" class="appointment-btn scrollto">Buat akun
+            @if ($logged !== true)
+                <a href="/signup" class="appointment-btn scrollto">Buat akun
+            @endif
             </a>
 
         </div>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +9,20 @@
     <title>Login | Tenun Moko Alor</title>
 </head>
 <link href="/user/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <body>
+
+    @if (session()->has('success'))
+        <script>
+            swal("Berhasil", "{{ session('success') }}", "success")
+        </script>
+    @endif
+    @if (session()->has('error'))
+        <script>
+            swal("Gagal", "{{ session('error') }}", "error")
+        </script>
+    @endif
     <section class="vh-100" style="background-color: #fff;">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
@@ -30,7 +42,7 @@
                                         <div class="form-outline mb-4">
                                             <input type="email" id="form2Example17" class="form-control form-control-lg"
                                                 name="email" />
-                                            <label class="form-label" for="form2Example17">Email address</label>
+                                            <label class="form-label" for="form2Example17">Email</label>
                                         </div>
 
                                         <div class="form-outline mb-4">
@@ -52,10 +64,28 @@
                                         </div>
 
                                         <a class="small text-muted" href="#!">Lupa password?</a>
-                                        <p class="mb-5 pb-lg-2" style="color: #393f81;">Belum punya akun? <a
+                                        <p class="mb-2 pb-lg-2" style="color: #393f81;">Belum punya akun? <a
                                                 href="/signup" style="color: #393f81;">Daftar sekarang</a></p>
 
                                     </form>
+
+                                    <hr>
+                                    <center>
+                                        <span class="text-muted d-block mb-3">
+                                            - Masuk sebagai -
+                                        </span>
+                                    </center>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <a href="/login/google" class="btn"
+                                                style="border-radius:20px; color: white; width: 100%; background-color:#bd3838">Google</a>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <a href="/login/facebook" class="btn"
+                                                style="border-radius:20px; color: white; width: 100%; background-color:#1263ab">Facebook</a>
+                                        </div>
+                                    </div>
+                                    <br>
 
                                 </div>
                             </div>

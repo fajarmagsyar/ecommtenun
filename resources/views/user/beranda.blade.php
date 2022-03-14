@@ -1,5 +1,15 @@
 @extends('user.layouts.main')
 @section('content')
+    @if (session()->has('success'))
+        <script>
+            swal("Berhasil", "{{ session('success') }}", "success")
+        </script>
+    @endif
+    @if (session()->has('error'))
+        <script>
+            swal("Gagal", "{{ session('error') }}", "error")
+        </script>
+    @endif
     <section class="d-flex align-items-center mt-5">
         <div class="container">
             <div class="row">
@@ -73,7 +83,6 @@
 
             </div>
         </section><!-- End Why Us Section -->
-
 
         <!-- ======= Counts Section ======= -->
         <section id="counts" class="counts">

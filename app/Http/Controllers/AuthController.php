@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,9 +23,11 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-
-            return redirect('/admin/dashboard');
-            // return auth()->user()->role;
+            if (auth()->user()->role == 0) {
+                return redirect('/');
+            } else if (auth()->user()->role == 1) {
+                return redirect('/admin/dashboard');
+            }
         }
         // dd($credentials);
         return back()->with('error', 'Email atau password salah, silahkan coba lagi!');
@@ -38,6 +41,6 @@ class AuthController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/login');
     }
 }

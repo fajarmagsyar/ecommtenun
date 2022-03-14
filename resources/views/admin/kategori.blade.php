@@ -84,7 +84,7 @@
                                         <td>{{ $r->nama_kategori }}</td>
                                         <td class="text-center">
                                             <a href="/{{ $r->gambar }}" target="_blank">
-                                                <img height="50px" src="/{{ $r->gambar }}" alt="">
+                                                <img height="50px" src="{{ $r->gambar }}" alt="">
                                             </a>
                                         </td>
                                         <td class="text-center align-middle">
