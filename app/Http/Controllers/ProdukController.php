@@ -18,7 +18,7 @@ class ProdukController extends Controller
     {
         return view('admin.produk', [
             'activeLink' => 'produk',
-            'page' => 'TMA | Data Produk,',
+            'page' => 'Gunung Mako Tenun | Data Produk,',
             'produkRows' => Produk::select(['produk.*', 'kategori.nama_kategori'])
                 ->orderBy('nama_produk', 'asc')
                 ->join('kategori', 'kategori.kategori_id', '=', 'produk.kategori_id')

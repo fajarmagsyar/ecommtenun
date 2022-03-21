@@ -19,7 +19,6 @@ return new class extends Migration
             $table->integer('produk_id');
             $table->integer('checkout_id')->nullable();
             $table->string('jumlah');
-            $table->string('status');
             $table->timestamps();
         });
     }

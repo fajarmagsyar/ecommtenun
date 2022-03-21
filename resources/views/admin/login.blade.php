@@ -31,13 +31,13 @@
                         <div class="row g-0">
                             <div class="col-md-12 col-lg-12 d-flex align-items-center">
                                 <div class="card-body p-5 p-lg-5 text-black" style="border: none">
-
                                     <form action="/login" method="post">
                                         @csrf
                                         <div class="d-flex align-items-center mb-3 pb-1">
                                             <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
                                             <span class="h1 fw-bold mb-4 mx-auto"><img src="/user/assets/img/logo.png"
-                                                    width="200px" alt=""></span>
+                                                    width="100px" alt=""> <br>
+                                            </span>
                                         </div>
                                         <div class="form-outline mb-4">
                                             <input type="email" id="form2Example17" class="form-control form-control-lg"

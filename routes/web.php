@@ -29,6 +29,7 @@ Route::post('/signup', [UserController::class, 'signUpStore']);
 Route::get('/signup/emailverification/{id}', [UserController::class, 'signUpVerification']);
 Route::post('/signup/emailverification/', [UserController::class, 'signUpVerificationStore']);
 Route::get('/kategori/{page}', [UserController::class, 'kategori']);
+Route::get('/produk', [UserController::class, 'produk']);
 Route::get('/produk/{id}', [UserController::class, 'produkDetail']);
 
 //Product Transaction

@@ -39,6 +39,7 @@ class UserController extends Controller
                 ->get(),
             'logged' => auth::check(),
             'countKeranjang' => $this->countKeranjang,
+            'activeLink' => 'beranda',
         ]);
     }
     function login()
@@ -51,6 +52,7 @@ class UserController extends Controller
             'kategoriRows' => Kategori::get(),
             'logged' => auth::check(),
             'countKeranjang' => $this->countKeranjang,
+            'activeLink' => 'signup',
         ]);
     }
     function signUpStore(Request $request)
@@ -78,6 +80,7 @@ class UserController extends Controller
             'customer_id' => $id,
             'countKeranjang' => $this->countKeranjang,
             'logged' => auth::check(),
+            'activeLink' => 'signup',
         ]);
     }
     function signUpVerificationStore(Request $request)
@@ -103,6 +106,20 @@ class UserController extends Controller
             'kategori' => $param,
             'countKeranjang' => $this->countKeranjang,
             'logged' => auth::check(),
+            'activeLink' => 'kategori',
+        ]);
+    }
+    function produk()
+    {
+        return view('user.produk', [
+            'kategoriRows' => Kategori::get(),
+            'produkRows' => Produk::select(['produk.*', 'kategori.nama_kategori'])
+                ->join('kategori', 'kategori.kategori_id', '=', 'produk.kategori_id')
+                ->get(),
+            'kategori' => 'Seluruh',
+            'countKeranjang' => $this->countKeranjang,
+            'logged' => auth::check(),
+            'activeLink' => 'produk',
         ]);
     }
     function produkDetail($param)
@@ -115,6 +132,7 @@ class UserController extends Controller
                 ->first(),
             'logged' => auth::check(),
             'countKeranjang' => $this->countKeranjang,
+            'activeLink' => 'produk',
         ]);
     }
     function addToCart($param)
@@ -139,6 +157,7 @@ class UserController extends Controller
             'keranjangRows' => Pemesanan::join('produk', 'produk.produk_id', '=', 'pemesanan.produk_id')->where('pemesanan.customer_id', auth()->user()->customer_id)->where('checkout_id', null)->get(),
             'logged' => auth::check(),
             'countKeranjang' => $this->countKeranjang,
+            'activeLink' => 'keranjang',
         ]);
     }
     function keranjangItemHapus(Request $request)
@@ -157,6 +176,7 @@ class UserController extends Controller
             'keranjangRows' => Pemesanan::join('produk', 'produk.produk_id', '=', 'pemesanan.produk_id')->where('pemesanan.checkout_id', null)->where('pemesanan.customer_id', auth()->user()->customer_id)->get(),
             'logged' => auth::check(),
             'countKeranjang' => $this->countKeranjang,
+            'activeLink' => 'keranjang',
         ]);
     }
     function checkoutKonfirmasi(Request $request)
@@ -280,6 +300,7 @@ class UserController extends Controller
                 ->get(),
             'logged' => auth::check(),
             'countKeranjang' => $this->countKeranjang,
+            'activeLink' => 'catatan',
         ]);
     }
 }

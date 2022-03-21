@@ -12,14 +12,14 @@ class AdminController extends Controller
     {
         return view('admin.beranda', [
             'activeLink' => 'dashboard',
-            'page' => 'TMA | Admin,'
+            'page' => 'Gunung Mako Tenun | Admin,'
         ]);
     }
     function pembelian()
     {
         return view('admin.pembelian', [
             'activeLink' => 'pembelian',
-            'page' => 'TMA | Admin,',
+            'page' => 'Gunung Mako Tenun | Admin,',
             'checkoutRows' => Checkout::select(['customer.nama_customer', 'checkout.*'])->join('customer', 'customer.customer_id', '=', 'checkout.customer_id')->get(),
             'keranjangRows' => Checkout::join('pemesanan', 'checkout.checkout_id', '=', 'pemesanan.checkout_id')
                 ->join('produk', 'produk.produk_id', '=', 'pemesanan.produk_id')

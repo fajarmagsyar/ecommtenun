@@ -17,7 +17,7 @@ class AdminUserController extends Controller
     {
         return view('admin.admin', [
             'activeLink' => 'admin',
-            'page' => 'TMA | Data Admin,',
+            'page' => 'Gunung Mako Tenun | Data Admin,',
             'customerRows' => Customer::orderBy('nama_customer', 'asc')
                 ->where('role', 1)
                 ->get(),

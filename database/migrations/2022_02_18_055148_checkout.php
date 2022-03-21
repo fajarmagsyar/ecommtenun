@@ -18,7 +18,9 @@ return new class extends Migration
             $table->integer('customer_id');
             $table->string('kurir');
             $table->string('no_resi')->nullable();
-            $table->string('bukti_pembayaran');
+            $table->string('bukti_pembayaran')->nullable();
+            $table->string('status');
+            $table->string('ongkir');
             $table->timestamps();
         });
     }

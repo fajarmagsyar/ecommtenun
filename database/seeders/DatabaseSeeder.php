@@ -31,19 +31,19 @@ class DatabaseSeeder extends Seeder
             'gambar' => '/upload/kategori/aksesoris.jpg'
         ]);
         Customer::create([
-            'nama_customer' => 'Fajar Magsyar',
+            'nama_customer' => 'Admin',
             'alamat' => 'Jln. Manafe, Kelurahan Kayu Putih',
-            'email' => 'fajar@gmail.com',
-            'username' => 'fajarmagsyar',
+            'email' => 'admin@admin.com',
+            'username' => 'user',
             'password' => Hash::make('admin'),
             'role' => 1,
         ]);
         Customer::create([
-            'nama_customer' => 'Fajar Magsyar',
+            'nama_customer' => 'User',
             'alamat' => 'Jln. Manafe, Kelurahan Kayu Putih',
-            'email' => 'magsyar@gmail.com',
-            'username' => 'fajaruser',
-            'password' => Hash::make('admin'),
+            'email' => 'user@mail.com',
+            'username' => 'user',
+            'password' => Hash::make('user'),
             'role' => 0,
         ]);
     }

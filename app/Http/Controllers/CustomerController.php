@@ -17,7 +17,7 @@ class CustomerController extends Controller
     {
         return view('admin.customer', [
             'activeLink' => 'customer',
-            'page' => 'TMA | Data Customer,',
+            'page' => 'Gunung Mako Tenun | Data Customer,',
             'customerRows' => Customer::orderBy('nama_customer', 'asc')
                 ->where('role', 0)
                 ->get(),

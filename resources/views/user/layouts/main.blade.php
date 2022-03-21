@@ -41,8 +41,9 @@
 
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
-                    <li><a class="nav-link active" href="/">Home</a></li>
-                    <li><a class="nav-link" href="/produk">Produk</a></li>
+                    <li><a class="nav-link {{ $activeLink == 'beranda' ? 'active' : '' }}" href="/">Home</a></li>
+                    <li><a class="nav-link {{ $activeLink == 'produk' ? 'active' : '' }}" href="/produk">Produk</a>
+                    </li>
                     <li class="dropdown"><a href="/kategori"><span>Kategori</span>
                             <i class="bi bi-chevron-down"></i></a>
                         <ul>
@@ -53,7 +54,7 @@
                     </li>
                     @if ($logged == true)
 
-                        <li><a class="nav-link" href="/keranjang">
+                        <li><a class="nav-link {{ $activeLink == 'keranjang' ? 'active' : '' }}" href="/keranjang">
                                 Keranjang &nbsp;
                                 @if ($countKeranjang !== null)
                                     <span class="badge bg-primary">{{ $countKeranjang }} <i
@@ -61,13 +62,15 @@
                                 @endif
                             </a>
                         </li>
-                        <li><a class="nav-link" href="/catatan">Catatan Pembelian</a></li>
+                        <li><a class="nav-link {{ $activeLink == 'catatan' ? 'active' : '' }}" href="/catatan">Catatan
+                                Pembelian</a></li>
                     @else
-                        <li><a class="nav-link" href="/login">
+                        <li><a class="nav-link {{ $activeLink == 'keranjang' ? 'active' : '' }}" href="/login">
                                 Keranjang
                             </a>
                         </li>
-                        <li><a class="nav-link" href="/login">Catatan Pembelian</a></li>
+                        <li><a class="nav-link {{ $activeLink == 'catatan' ? 'active' : '' }}" href="/login">Catatan
+                                Pembelian</a></li>
                     @endif
                     @if ($logged !== true)
                         <li><a class="nav-link" href="/login">Masuk</a></li>

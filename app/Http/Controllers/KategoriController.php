@@ -16,7 +16,7 @@ class KategoriController extends Controller
     {
         return view('admin.kategori', [
             'activeLink' => 'kategori',
-            'page' => 'TMA | Data Kategori,',
+            'page' => 'Gunung Mako Tenun | Data Kategori,',
             'kategoriRows' => Kategori::orderBy('nama_kategori', 'asc')
                 ->get(),
         ]);
