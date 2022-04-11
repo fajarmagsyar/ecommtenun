@@ -11,6 +11,7 @@
 </head>
 <link href="/user/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://kit.fontawesome.com/af029991ac.js" crossorigin="anonymous"></script>
 
 <body>
 
@@ -35,10 +36,10 @@
                                     <form action="/login" method="post">
                                         @csrf
                                         <div class="d-flex align-items-center mb-3 pb-1">
-                                            <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
                                             <span class="h3 fw-bold mb-4 mx-auto">
                                                 <center>
-                                                    <img src="/user/assets/img/logo.png" width="100px" alt=""> <br>
+                                                    <img src="/user/assets/img/logo.png" width="100px" alt=""
+                                                        class="mb-3"> <br>
                                                     Login | <span class="text-muted">Gunung Mako</span>
                                                 </center>
                                             </span>
@@ -80,13 +81,23 @@
                                         </span>
                                     </center>
                                     <div class="row">
-                                        <div class="col-sm-6">
-                                            <a href="/login/google" class="btn"
-                                                style="border-radius:20px; color: white; width: 100%; background-color:#bd3838">Google</a>
-                                        </div>
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-4">
                                             <a href="/login/facebook" class="btn"
-                                                style="border-radius:20px; color: white; width: 100%; background-color:#1263ab">Facebook</a>
+                                                style="border-radius:20px; color: white; width: 100%; background-color:#ab12a1">
+                                                <i class="fab fa-instagram"></i>
+                                                Instagram</a>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <a href="/login/google" class="btn"
+                                                style="border-radius:20px; color: white; width: 100%; background-color:#bd3838">
+                                                <i class="fab fa-google"></i> Google
+                                            </a>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <a href="/login/facebook" class="btn"
+                                                style="border-radius:20px; color: white; width: 100%; background-color:#1263ab">
+                                                <i class="fab fa-facebook-square"></i>
+                                                Facebook</a>
                                         </div>
                                     </div>
                                     <br>
