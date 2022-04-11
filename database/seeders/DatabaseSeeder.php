@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
         Customer::create([
             'nama_customer' => 'Admin',
             'alamat' => 'Jln. Manafe, Kelurahan Kayu Putih',
-            'email' => 'admin@admin.com',
+            'email' => 'admin@mail.com',
             'username' => 'user',
             'password' => Hash::make('admin'),
             'role' => 1,
@@ -42,7 +42,7 @@ class DatabaseSeeder extends Seeder
             'nama_customer' => 'User',
             'alamat' => 'Jln. Manafe, Kelurahan Kayu Putih',
             'email' => 'user@mail.com',
-            'username' => 'user',
+            'username' => 'admin',
             'password' => Hash::make('user'),
             'role' => 0,
         ]);

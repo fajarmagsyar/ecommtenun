@@ -22,4 +22,9 @@ class Customer extends Authenticatable
      * @var string[]
      */
     protected $guarded = ['customer_id'];
+
+    static public function getById($id)
+    {
+        Customer::where('customer_id', $id)->first();
+    }
 }

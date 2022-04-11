@@ -53,6 +53,9 @@ Route::post('/logout', [AuthController::class, 'authLogout']);
 Route::get('/login/{provider}', [SocialController::class, 'redirect']);
 Route::get('/login/{provider}/callback', [SocialController::class, 'Callback']);
 
+//profilChange
+Route::post('/profilChange', [UserController::class, 'profilChange']);
+
 Route::prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index']);
     Route::resource('/produk', ProdukController::class);

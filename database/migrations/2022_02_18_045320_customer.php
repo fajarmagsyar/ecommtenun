@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('customer', function (Blueprint $table) {
             $table->increments('customer_id');
             $table->string('nama_customer');
-            $table->string('alamat');
+            $table->string('alamat')->default('-');
             $table->string('email')->unique();
             $table->string('username')->unique();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->integer('role')->default(0);
             $table->string('token_otp')->nullable();
             $table->string('status')->default(0);

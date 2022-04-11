@@ -9,7 +9,7 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <link href="/user/assets/img/favicon.png" rel="icon">
+    <link href="/user/assets/img/favicon.ico" rel="icon">
     <link href="/user/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <link
@@ -79,7 +79,7 @@
                                     {{ auth()->user()->username }}</span>
                                 <i class="bi bi-chevron-down"></i></a>
                             <ul>
-                                <li><a href="#">Profil</a></li>
+                                <li><a href="#" data-bs-toggle="modal" data-bs-target="#profil">Profil</a></li>
 
                                 <form action="/logout" method="post">
                                     @csrf
@@ -102,6 +102,51 @@
 
 
     @yield('content')
+
+
+    @if ($logged == true)
+        <!-- Modal -->
+        <div class="modal fade" id="profil" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"><b>Ubah Profil</b></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        @php
+                            $customer = App\Models\Customer::getById(auth()->user()->customer_id);
+                        @endphp
+                        <form action="/profilChange" method="post">
+                            @csrf
+                            <input type="hidden" value="{{ auth()->user()->customer_id }}" name="customer_id">
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Nama Customer</label>
+                                <input type="text" class="form-control" name="nama_customer"
+                                    id="exampleFormControlInput1" value="{{ auth()->user()->nama_customer }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label">Alamat</label>
+                                <textarea name="alamat" class="form-control" id="exampleFormControlTextarea1"
+                                    rows="3">{{ auth()->user()->alamat }}</textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Email</label>
+                                <input name="email" type="email" class="form-control" id="exampleFormControlInput1"
+                                    value="{{ auth()->user()->email }}">
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+
 
     <footer id="footer">
         <div class="container d-md-flex py-4">

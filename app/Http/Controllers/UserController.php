@@ -150,7 +150,7 @@ class UserController extends Controller
     function keranjang()
     {
         if ($this->countKeranjang == null) {
-            return redirect('/')->with('error', 'Keranjang Kosong, silahkan masukkan produk pada keranjang terlebih dahulu');
+            return back()->with('error', 'Keranjang Kosong, silahkan masukkan produk pada keranjang terlebih dahulu');
         }
         return view('user.keranjang', [
             'kategoriRows' => Kategori::get(),
@@ -302,5 +302,16 @@ class UserController extends Controller
             'countKeranjang' => $this->countKeranjang,
             'activeLink' => 'catatan',
         ]);
+    }
+    function profilChange(Request $req)
+    {
+        $data = [
+            'nama_customer' => $req->input('nama_customer'),
+            'alamat' => $req->input('alamat'),
+            'email' => $req->input('email'),
+        ];
+        Customer::find($req->input('customer_id'))->update($data);
+
+        return redirect('/')->with('success', 'Profil berhasil diubah!');
     }
 }

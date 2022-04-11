@@ -36,7 +36,7 @@
                                 <a href="/produk/addToCart/{{ $produkRow->produk_id }}"
                                     class="btn btn-primary float-end btn-sm px-4" style="border-radius: 30px">Masukkan
                                     Keranjang <i class="ri-shopping-cart-fill"></i></a>
-                                <a href="/produk/checkout" class="btn btn-info btn-sm px-4"
+                                <a href="/checkout" class="btn btn-info btn-sm px-4"
                                     style="color:white;border-radius: 30px">Checkout <i
                                         class="ri-checkbox-circle-line"></i></a>
                             @else

@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login | Tenun Moko Alor</title>
+    <link href="/user/assets/img/favicon.ico" rel="icon">
 </head>
 <link href="/user/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -35,8 +36,11 @@
                                         @csrf
                                         <div class="d-flex align-items-center mb-3 pb-1">
                                             <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
-                                            <span class="h1 fw-bold mb-4 mx-auto"><img src="/user/assets/img/logo.png"
-                                                    width="100px" alt=""> <br>
+                                            <span class="h3 fw-bold mb-4 mx-auto">
+                                                <center>
+                                                    <img src="/user/assets/img/logo.png" width="100px" alt=""> <br>
+                                                    Login | <span class="text-muted">Gunung Mako</span>
+                                                </center>
                                             </span>
                                         </div>
                                         <div class="form-outline mb-4">

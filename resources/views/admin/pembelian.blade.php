@@ -53,7 +53,8 @@
                                         <td class="align-middle">
                                             <b>{{ $r->nama_customer }}</b>
                                             <br>
-                                            <code>CHCKID.{{ $r->checkout_id }}</code>
+                                            <code>CHCKID.{{ $r->checkout_id }}</code><br>
+                                            <code><b>Alamat : </b>{{ $r->alamat }}</code>
                                         </td>
                                         <td class="text-end">
                                             <ul class="list-group">
@@ -67,7 +68,6 @@
                                                             {{ $s->nama_produk }}
                                                             <span class="badge" style="color:black">Rp.
                                                                 {{ number_format($s->harga) }}</span>
-
                                                         </li>
                                                         @php
                                                             $totalHarga = $totalHarga + $s->harga;
@@ -90,14 +90,10 @@
                                                     <span><strong>Total Harga</strong></span>
                                                     <span class="badge" style="color:black">Rp.
                                                         {{ number_format($totalHarga) }}</span>
-
                                                 </li>
                                             </ul>
                                         </td>
                                         <td class="align-middle text-center">
-                                            <span class="badge bg-primary">
-                                                {{ $r->status }}
-                                            </span>
                                             <br>
                                             @if ($r->no_resi != null)
                                                 <span class="badge bg-primary">
@@ -105,7 +101,7 @@
                                                 </span>
                                             @else
                                                 <span class="badge bg-danger">
-                                                    No Resi Belum Terbit
+                                                    Pesanan Proses, Resi Belum Terbit
                                                 </span>
                                             @endif
                                         </td>
@@ -124,7 +120,8 @@
                                                 <button type="submit" class="btn btn-sm btn-danger"
                                                     style="padding-right: 11px; padding-left: 11px"
                                                     onclick="return confirm('Apakah anda yakin ingin menolak pesanan ini?')"><i
-                                                        class="fas fa-times"></i></button>
+                                                        class="fas fa-times"></i>
+                                                </button>
                                             </form>
                                         </td>
 
@@ -145,6 +142,7 @@
                                                     <form action="/admin/pembelian/updateResi" method="post">
                                                         @method('post')
                                                         @csrf
+                                                        <input type="hidden" value="{{ $r->email }}" name="email">
                                                         <div class="mb-3">
                                                             <label for="exampleInputEmail1" class="form-label">Nomor
                                                                 Resi</label>
@@ -155,7 +153,6 @@
                                                             <span class="text-muted small">*Pastikan no resi yang anda
                                                                 inputkan sudah benar</span>
                                                         </div>
-
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="reset" class="btn btn-secondary"><i

@@ -94,63 +94,28 @@
                                 </tr>
                             </tfoot>
                             <tbody>
-                                @foreach ($checkoutRows as $key => $r)
+                                @foreach ($customerRows as $key => $r)
                                     <tr>
-                                        <th class="text-center align-middle">{{ $key = $key + 1 }}</th>
-                                        <td class="align-middle text-center">
-                                            <code>CHCKID.{{ $r->checkout_id }}</code>
-                                        </td>
-                                        <td class="text-end">
-                                            <ul class="list-group">
-                                                @php
-                                                    $totalHarga = 0;
-                                                @endphp
-                                                @foreach ($keranjangRows as $s)
-                                                    @if ($r->checkout_id == $s->checkout_id)
-                                                        <li
-                                                            class="list-group-item d-flex justify-content-between align-items-center">
-                                                            {{ $s->nama_produk }}
-                                                            <span class="badge" style="color:black">Rp.
-                                                                {{ number_format($s->harga) }}</span>
-
-                                                        </li>
-                                                        @php
-                                                            $totalHarga = $totalHarga + $s->harga;
-                                                        @endphp
-                                                    @endif
-                                                @endforeach
-                                                @php
-                                                    $totalHarga = $totalHarga + $r->ongkir;
-                                                @endphp
-                                                <li
-                                                    class="list-group-item d-flex justify-content-between align-items-center">
-                                                    <span>Biaya Pengiriman <b>({{ strtoupper($r->kurir) }})</b>
-                                                    </span>
-                                                    <span class="badge" style="color:black">Rp.
-                                                        {{ number_format($r->ongkir) }}</span>
-
-                                                </li>
-                                                <li
-                                                    class="list-group-item d-flex justify-content-between align-items-center">
-                                                    <span><strong>Total Harga</strong></span>
-                                                    <span class="badge" style="color:black">Rp.
-                                                        {{ number_format($totalHarga) }}</span>
-
-                                                </li>
-                                            </ul>
-                                        </td>
-                                        <td class="align-middle text-center">
-                                            @if ($r->no_resi != null)
-                                                <span class="badge bg-primary">
-                                                    No Resi. {{ $r->no_resi }}
-                                                </span>
-                                            @else
-                                                <span class="badge bg-danger">
-                                                    No Resi Belum Terbit
-                                                </span>
-                                            @endif
+                                        <td class="text-center">{{ $key = $key + 1 }}</td>
+                                        <td>{{ $r->nama_customer }}</td>
+                                        <td>{{ $r->alamat }}</td>
+                                        <td><a href="mailto:{{ $r->email }}"><i class="fa fa-envelope"></i>
+                                                {{ $r->email }}</a></td>
+                                        <td>{{ $r->username }}</td>
+                                        <td class="text-center">
+                                            <code>{{ $r->token_otp !== null ? $r->token_otp : 'Belum ada' }}</code>
                                         </td>
 
+                                        <td class="text-center align-middle">
+                                            <form action="/admin/customer/{{ $r->customer_id }}" method="post"
+                                                class="d-inline">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button class="btn btn-danger btn-sm">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
