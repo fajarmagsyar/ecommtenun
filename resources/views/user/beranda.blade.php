@@ -136,7 +136,9 @@
                                     </div>
                                     <div class="member-info">
                                         <h4>{{ $r->nama_produk }}</h4>
-                                        <span>{{ $r->nama_kategori }}</span>
+                                        <span>{{ $r->nama_kategori }} <br>
+                                            <b>Stok {{ $r->stok == 0 ? 'Kosong' : $r->stok }}</b>
+                                        </span>
                                         <h4 class="mt-2" style="color: rgb(49, 49, 49)">
                                             <strong>Rp.{{ number_format($r->harga) }}</strong>
                                         </h4>

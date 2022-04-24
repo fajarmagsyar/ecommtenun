@@ -194,10 +194,18 @@ class UserController extends Controller
             'bukti_pembayaran' => $folder,
             'ongkir' => $request->input('ongkir'),
         ];
-        // dd($data);
         $checkout = Checkout::create($data)->getAttributes();
 
         Pemesanan::where('pemesanan.customer_id', auth()->user()->customer_id)->where('pemesanan.checkout_id', null)->update(['checkout_id' => $checkout['checkout_id']]);
+
+        $pemesanan = Pemesanan::where('customer_id', auth()->user()->customer_id)->where('checkout_id', $checkout['checkout_id'])->get();
+
+        foreach ($pemesanan as $r) {
+            $produk = Produk::where('produk_id', $r->produk_id)->first();
+            $stok = $produk->stok - 1;
+
+            Produk::where('produk_id', $r->produk_id)->update(['stok' => $stok]);
+        }
 
         Mail::to(auth()->user()->email)->send(new pesananKonfirmasi($data));
 

@@ -65,4 +65,10 @@ Route::prefix('admin')->group(function () {
     Route::get('/pembelian', [AdminController::class, 'pembelian']);
     Route::post('/pembelian/deletePemesanan', [AdminController::class, 'deletePembelian']);
     Route::post('/pembelian/updateResi', [AdminController::class, 'updateResi']);
+
+    //PDF Print
+    Route::get('/pembelianPDF/{jenis}', [AdminController::class, 'pembelianPdf']);
+    Route::get('/produkPDF', [ProdukController::class, 'produkPdf']);
+    Route::get('/kategoriPDF', [KategoriController::class, 'kategoriPdf']);
+    Route::get('/accountPdf/{jenis}', [CustomerController::class, 'accountPdf']);
 });

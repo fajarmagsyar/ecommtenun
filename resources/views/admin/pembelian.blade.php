@@ -19,6 +19,19 @@
                     <div class="card-header">
                         <i class="fas fa-table me-1"></i>
                         Data Pembelian
+                        <div class="dropdown float-end">
+                            <button class="btn btn-success dropdown-toggle btn-sm" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-print"></i> Export
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="/admin/pembelianPDF/tahun">Tahunan</a></li>
+                                <li><a class="dropdown-item" href="/admin/pembelianPDF/bulan">Bulanan</a></li>
+                                <li><a class="dropdown-item" href="/admin/pembelianPDF/minggu">Mingguan</a></li>
+                                <li><a class="dropdown-item" href="/admin/pembelianPDF/harian">Harian</a></li>
+                                <li><a class="dropdown-item" href="/admin/pembelianPDF/seluruh">Seluruh</a></li>
+                            </ul>
+                        </div>
                     </div>
 
                     <div class="card-body">
@@ -79,7 +92,8 @@
                                                 @endphp
                                                 <li
                                                     class="list-group-item d-flex justify-content-between align-items-center">
-                                                    <span>Biaya Pengiriman <b>({{ strtoupper($r->kurir) }})</b>
+                                                    <span><i class="fas fa-truck"></i> Biaya Pengiriman
+                                                        <b>({{ strtoupper($r->kurir) }})</b>
                                                     </span>
                                                     <span class="badge" style="color:black">Rp.
                                                         {{ number_format($r->ongkir) }}</span>
@@ -87,7 +101,7 @@
                                                 </li>
                                                 <li
                                                     class="list-group-item d-flex justify-content-between align-items-center">
-                                                    <span><strong>Total Harga</strong></span>
+                                                    <span><strong><i class="fas fa-box"></i> Total Harga</strong></span>
                                                     <span class="badge" style="color:black">Rp.
                                                         {{ number_format($totalHarga) }}</span>
                                                 </li>
@@ -96,11 +110,19 @@
                                         <td class="align-middle text-center">
                                             <br>
                                             @if ($r->no_resi != null)
-                                                <span class="badge bg-primary">
-                                                    No Resi. {{ $r->no_resi }}
-                                                </span>
+                                                @if ($r->no_resi == 'Ditolak oleh admin')
+                                                    <span class="badge bg-danger">
+                                                        {{ $r->no_resi }}
+                                                    </span>
+                                                @else
+                                                    <span class="badge bg-success">
+                                                        Diterima :
+                                                        <br>
+                                                        No Resi. {{ $r->no_resi }}
+                                                    </span>
+                                                @endif
                                             @else
-                                                <span class="badge bg-danger">
+                                                <span class="badge bg-warning">
                                                     Pesanan Proses, Resi Belum Terbit
                                                 </span>
                                             @endif

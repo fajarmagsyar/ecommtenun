@@ -93,16 +93,28 @@
                                                 </td>
                                                 <td class="align-middle text-center">
                                                     @if ($r->no_resi != null)
-                                                        <span class="badge bg-primary">
-                                                            No Resi. {{ $r->no_resi }}
-                                                        </span>
+                                                        @if ($r->no_resi == 'Ditolak oleh admin')
+                                                            <span class="badge bg-danger">
+                                                                {{ $r->no_resi }}
+                                                            </span>
+                                                        @else
+                                                            <span class="badge bg-success">
+                                                                Diterima :
+                                                                <br>
+                                                                No Resi. {{ $r->no_resi }}
+                                                            </span>
+                                                        @endif
                                                     @else
-                                                        <span class="badge bg-danger">
+                                                        <span class="badge bg-warning">
                                                             No Resi Belum Terbit
                                                         </span>
                                                     @endif
                                                 </td>
-
+                                                <td class="align-middle text-center">
+                                                    <a href="https://api.whatsapp.com/send?phone=6281290381937&text=Keluhan%20No.%20Invoice:%20CHCKID.{{ $r->checkout_id }}%20|%20Keluhan%20anda:%20"
+                                                        class="btn btn-success btn-sm" data-action="share/whatsapp/share"><i
+                                                            class="fab fa-whatsapp"></i> Keluhan</a>
+                                                </td>
                                             </tr>
                                         @endforeach
 

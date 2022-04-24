@@ -18,9 +18,9 @@
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="index.html"><img src="/user/assets/img/logo-white.png" style="height: 30px"
+        <a class="navbar-brand ps-3" href="/admin/dashboard"><img src="/user/assets/img/logo.png" style="height: 30px"
                 alt="">
-            | <span class="text-muted">Admin</span></a>
+            <span class="text-white" style="font-size: 15px"> - Admin Page</span></a>
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
                 class="fas fa-bars"></i></button>

@@ -6,6 +6,7 @@ use App\Models\Kategori;
 use App\Models\Produk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use PDF;
 
 class ProdukController extends Controller
 {
@@ -133,5 +134,13 @@ class ProdukController extends Controller
         Produk::find($id)->delete();
         unlink('upload/produk/' . $produk->gambar);
         return redirect('/admin/produk')->with('success', 'Data berhasil dihapus!');
+    }
+
+    public function produkPdf()
+    {
+        $rows = Produk::get();
+        $pdf = PDF::loadView('admin.pdf.produk', ['rows' => $rows])->setPaper('a4', 'landscape');
+
+        return $pdf->download(date("Y-m-d H:m:s") . 'Produk.pdf');
     }
 }
