@@ -135,6 +135,7 @@
                                             <form action="/admin/pembelian/deletePemesanan" method="post">
                                                 @csrf
                                                 <input type="hidden" name="checkout_id" value="{{ $r->checkout_id }}">
+                                                <input type="hidden" name="email" value="{{ $r->email }}">
                                                 <a href="#" data-bs-toggle="modal"
                                                     data-bs-target="#ubah{{ $r->checkout_id }}"
                                                     class="btn btn-sm btn-primary"><i class="fas fa-check"></i>

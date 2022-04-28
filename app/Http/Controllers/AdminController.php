@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 
 use App\Mail\resiTerbit;
+use App\Mail\pesananTolakMail;
 use App\Models\Pemesanan;
 use Carbon\Carbon;
 use PDF;
@@ -55,6 +56,7 @@ class AdminController extends Controller
     function deletePembelian(Request $request)
     {
         Checkout::where('checkout_id', $request->input('checkout_id'))->update(['no_resi' => 'Ditolak oleh admin']);
+        Mail::to($request->input('email'))->send(new pesananTolakMail());
         return redirect('/admin/pembelian')->with('success', 'Pemesanan tersebut berhasil ditolak');
     }
     function updateResi(Request $request)

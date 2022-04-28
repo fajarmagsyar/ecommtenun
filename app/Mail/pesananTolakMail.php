@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class resiTerbit extends Mailable
+class pesananTolakMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -16,10 +16,8 @@ class resiTerbit extends Mailable
      *
      * @return void
      */
-    public function __construct($data)
+    public function __construct()
     {
-        //
-        $this->data = $data;
     }
 
     /**
@@ -30,7 +28,7 @@ class resiTerbit extends Mailable
     public function build()
     {
         return $this->from('gunungmakomamasyariat01@gmail.com', "Gunung Mako Mama Syariat")
-            ->markdown('mail.resiTerbit', ['data' => $this->data])
-            ->subject("Pesanan anda berhasil terkirim, silahkan tunggu konfirmasi dari admin");
+            ->markdown('mail.pesananTolak')
+            ->subject("Pesanan anda ditolak");
     }
 }
